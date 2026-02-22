@@ -1,4 +1,6 @@
 body {
+    margin: 0;
+    padding: 0;
     overflow: hidden;
 }
 
@@ -7,6 +9,39 @@ body {
     height: 100vh;
     position: relative;
     overflow: hidden;
+}
+
+.layer {
+    position: absolute;
+    display: flex;
+    width: 3840px; /* 1920 x 2 */
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.bg {      
+    flex: 0 0 1920px;
+    height: 100%;
+    background-size: 1920px 100%;
+    background-repeat: no-repeat;
+}
+
+.layer1 .bg {
+    background-image: url("assets/background/layer1.jpg");
+}
+
+.layer1 {
+    animation: scroll 20s linear infinite;
+}
+
+.layer2 .bg {
+    width: 1920px;
+    background-image: url("assets/background/layer2.png");
+}
+
+.layer2 {
+    animation: scroll 10s linear infinite;
 }
 
 .moving-box {
@@ -37,5 +72,13 @@ body {
         transform: translateX(100vw);
     } to {
         transform: translateX(-110vw);
+    }
+}
+
+@keyframes scroll {
+    from {
+        transform: translateX(-1920px);
+    } to {
+        transform: translateX(0);
     }
 }

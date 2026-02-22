@@ -4,6 +4,8 @@ function spawn() {
     document.body.appendChild(object);
 
     object.addEventListener('animationend', () => update(object));
+    // 'click' takes too long.
+    object.addEventListener('mousedown', () => onClick(object));
 
     update(object);
 }
@@ -28,12 +30,9 @@ function update(object) {
     object.style.animation = 'none';
     object.offsetWidth;
     object.style.animation = `moveAcross ${duration}s linear`;
-
-    // 'click' takes too long.
-    object.addEventListener('mousedown', () => onClick(object));
 }
 
 // sets amount of objects spawned. 
-for (let i = 0; i < 50; i++) {
+for (let i = 0; i < 20; i++) {
     spawn();
 }
