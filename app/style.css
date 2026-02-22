@@ -17,6 +17,21 @@ body {
     position: absolute;
 }
 
+.moving-box:hover {
+    cursor: pointer;
+}
+
+/* increases hit-box */
+.moving-box::after {
+    content: '';
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    top: -25px;
+    left: -25px;
+    background-color: rgba(0, 255, 0, 0.2);
+}
+
 @keyframes moveAcross {
     from {
         transform: translateX(100vw);
