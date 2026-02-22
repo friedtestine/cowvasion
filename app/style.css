@@ -28,7 +28,7 @@ body {
 }
 
 .layer1 .bg {
-    background-image: url("assets/background/layer1.jpg");
+    background-image: url("assets/background/layer1.webp");
 }
 
 .layer1 {
@@ -37,17 +37,18 @@ body {
 
 .layer2 .bg {
     width: 1920px;
-    background-image: url("assets/background/layer2.png");
+    background-image: url("assets/background/layer2.webp");
 }
 
 .layer2 {
+    opacity: 0.8;
     animation: scroll 10s linear infinite;
 }
 
 .moving-box {
     width: 50px;
     height: 50px;
-    right: -60px;
+    right: 0;
     background-color: #FF00FF;
     position: absolute;
 }

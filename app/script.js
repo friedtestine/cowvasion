@@ -24,7 +24,7 @@ function update(object) {
     const newPos = Math.floor(Math.random() * (90 - 5 + 1) + 5);
     object.style.top = `${newPos}vh`;
 
-    const duration = Math.random() * 8 + 2;
+    const duration = Math.random() * 10 + 5;
 
     // resets animation.
     object.style.animation = 'none';
@@ -32,7 +32,7 @@ function update(object) {
     object.style.animation = `moveAcross ${duration}s linear`;
 }
 
-// sets amount of objects spawned. 
+// sets amount of objects spawned. run once. 
 for (let i = 0; i < 20; i++) {
     spawn();
 }
