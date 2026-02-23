@@ -19,8 +19,8 @@ function spawn() {
             update(object);
         }
     });
-    // 'click' takes too long.
-    object.addEventListener('mousedown', () => onClick(object));
+    // 'pointerdown' handles mouse, finger, and stylus.
+    object.addEventListener('pointerdown', () => onClick(object));
 
     update(object);
 }
@@ -93,11 +93,12 @@ function createBlood(x, y) {
 }
 
 function update(object) {
-    console.log(object);
+    // check object count
+    console.log(document.querySelectorAll('.moving-box').length);
+
     // prevents crash; if object was clicked while animation was ending. 
     if (!document.body.contains(object)) return;
 
-    console.log(document.querySelectorAll('.moving-box').length);
     const newPos = Math.floor(Math.random() * (90 - 5 + 1) + 5);
     object.style.top = `${newPos}vh`;
 
