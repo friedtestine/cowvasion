@@ -49,7 +49,7 @@ body {
 .moving-box {
     width: 256px;
     height: 155px;
-    background-image: url("assets/sprites/cow-sprites.png");
+    background-image: url("assets/sprites/cow-sprites.webp");
     background-repeat: no-repeat;
     overflow: hidden;
     position: absolute;

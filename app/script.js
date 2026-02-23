@@ -1,7 +1,7 @@
 const shardImages = [
-    'assets/sprites/parts.png',
-    'assets/sprites/parts2.png',
-    'assets/sprites/parts3.png',
+    'assets/sprites/parts.webp',
+    'assets/sprites/parts2.webp',
+    'assets/sprites/parts3.webp',
 ];
 
 function playSound(url) {
