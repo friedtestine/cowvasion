@@ -1,8 +1,11 @@
+const count = document.querySelector('.count');
 const shardImages = [
     'assets/sprites/parts.webp',
     'assets/sprites/parts2.webp',
     'assets/sprites/parts3.webp',
 ];
+
+let c = 0; // count
 
 function playSound(url) {
     const audio = new Audio(url);
@@ -60,7 +63,9 @@ function onClick(object) {
     for (let i = 0; i < bloodCount; i++) {
         createBlood(centerX, centerY);
     }
-    
+
+    c++;
+    count.innerHTML = c;
     object.remove();
     playSound("assets/sounds/squelch.mp3");
     // added spawn call to maintain count.
