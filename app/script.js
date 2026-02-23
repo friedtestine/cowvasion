@@ -3,7 +3,11 @@ function spawn() {
     object.classList.add('moving-box');
     document.body.appendChild(object);
 
-    object.addEventListener('animationend', () => update(object));
+    object.addEventListener('animationend', (e) => {
+        if (e.animationName == 'moveAcross') {
+            update(object);
+        }
+    });
     // 'click' takes too long.
     object.addEventListener('mousedown', () => onClick(object));
 
@@ -17,6 +21,7 @@ function onClick(object){
 }
 
 function update(object) {
+    console.log(object);
     // prevents crash; if object was clicked while animation was ending. 
     if (!document.body.contains(object)) return;
 
@@ -29,7 +34,8 @@ function update(object) {
     // resets animation.
     object.style.animation = 'none';
     object.offsetWidth;
-    object.style.animation = `moveAcross ${duration}s linear`;
+    // add both animations so none is overwritten.
+    object.style.animation = `moveAcross ${duration}s linear, sprite-play 0.5s steps(4) infinite`;
 }
 
 // sets amount of objects spawned. run once. 

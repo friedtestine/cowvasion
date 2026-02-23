@@ -46,26 +46,16 @@ body {
 }
 
 .moving-box {
-    width: 50px;
-    height: 50px;
-    right: 0;
-    background-color: #FF00FF;
+    width: 256px;
+    height: 155px;
+    background-image: url("assets/sprites/cow-sprites.png");
+    background-repeat: no-repeat;
+    overflow: hidden;
     position: absolute;
 }
 
 .moving-box:hover {
     cursor: pointer;
-}
-
-/* increases hit-box */
-.moving-box::after {
-    content: '';
-    position: absolute;
-    width: 100px;
-    height: 100px;
-    top: -25px;
-    left: -25px;
-    background-color: rgba(0, 255, 0, 0.2);
 }
 
 @keyframes moveAcross {
@@ -81,5 +71,13 @@ body {
         transform: translateX(-1920px);
     } to {
         transform: translateX(0);
+    }
+}
+
+@keyframes sprite-play {
+    0% {
+        background-position: 0px 0px;
+    } 100% {
+        background-position: -1024px 0px;
     }
 }
