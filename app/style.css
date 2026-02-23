@@ -25,6 +25,7 @@ body {
     height: 100%;
     background-size: 1920px 100%;
     background-repeat: no-repeat;
+    user-select: none;
 }
 
 .layer1 .bg {
@@ -58,6 +59,25 @@ body {
     cursor: pointer;
 }
 
+.shard {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    pointer-events: none;
+    user-select: none;
+    z-index: 10;
+}
+
+.blood-drop {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    background-color: #cf08a0;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 10;
+}
+
 @keyframes moveAcross {
     from {
         transform: translateX(100vw);
@@ -79,5 +99,26 @@ body {
         background-position: 0px 0px;
     } 100% {
         background-position: -1024px 0px;
+    }
+}
+
+@keyframes explosion {
+    0% {
+        transform: translate(-50%, -50%) scale(1) rotate(0deg);
+        opacity: 1;
+    } 100% {
+        transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty))) rotate(var(--r));
+        opacity: 1;
+    }
+}
+
+@keyframes blood {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty))) scale(0.2);
+        opacity: 1; 
     }
 }

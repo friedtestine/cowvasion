@@ -1,3 +1,14 @@
+const shardImages = [
+    'assets/sprites/parts.png',
+    'assets/sprites/parts2.png',
+    'assets/sprites/parts3.png',
+];
+
+function playSound(url) {
+    const audio = new Audio(url);
+    audio.play();
+}
+
 function spawn() {
     let object = document.createElement('div');
     object.classList.add('moving-box');
@@ -14,10 +25,71 @@ function spawn() {
     update(object);
 }
 
-function onClick(object){
+function onClick(object) {
+    const rect = object.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    const speed = 300;
+
+    shardImages.forEach((src) => {
+        const shard = document.createElement('img');
+        shard.src = src;
+        shard.classList.add('shard');
+
+        shard.style.left = `${centerX}px`;
+        shard.style.top = `${centerY}px`;
+
+        const angle = Math.random() * Math.PI * 2;
+        const distance = 2000;
+
+        const destinationX = Math.cos(angle) * distance;
+        const destinationY = Math.sin(angle) * distance;
+
+        shard.style.setProperty('--tx', `${destinationX}px`);
+        shard.style.setProperty('--ty', `${destinationY}px`);
+        shard.style.setProperty('--r', `${Math.random() * 720}deg`);
+
+        const duration = distance / (speed + (Math.random() * 200));
+        shard.style.animation = `explosion ${duration}s linear forwards`;
+
+        document.body.appendChild(shard);
+        shard.addEventListener('animationend', () => shard.remove());
+    });
+
+    const bloodCount = 20;
+    for (let i = 0; i < bloodCount; i++) {
+        createBlood(centerX, centerY);
+    }
+    
     object.remove();
+    playSound("assets/sounds/squelch.mp3");
     // added spawn call to maintain count.
     spawn();
+}
+
+function createBlood(x, y) {
+    const drop = document.createElement('div');
+    drop.classList.add('blood-drop');
+
+    drop.style.left = `${x}px`;
+    drop.style.top = `${y}px`;
+
+    const angle = Math.random() * Math.PI * 2;
+    const distance = 400 + Math.random() * 600;
+    const speed = 600 + Math.random() * 200;
+
+    const tx = Math.cos(angle) * distance;
+    const ty = Math.sin(angle) * distance;
+    const duration = distance / speed;
+
+    drop.style.setProperty('--tx', `${tx}px`);
+    drop.style.setProperty('--ty', `${ty}px`);
+
+    const delay = Math.random() * 0.1;
+    drop.style.animation = `blood ${duration}s linear ${delay}s forwards`;
+
+    document.body.appendChild(drop);
+    drop.addEventListener('animationend', () => drop.remove());
 }
 
 function update(object) {
